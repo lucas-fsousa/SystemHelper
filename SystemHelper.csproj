@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<Title>PublicUtility.SystemHelper</Title>
+		<Company>Lucas F Sousa</Company>
+		<Description>A helper for mouse manipulation involving clicks and movements.</Description>
+		<PackageProjectUrl>https://github.com/lucas-fsousa/SystemHelper</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/lucas-fsousa/SystemHelper</RepositoryUrl>
+		<PackAsTool>False</PackAsTool>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>DOTNET;.NET6; .NET; MOUSE; HELPER; ASPNET</PackageTags>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>Lucas F Sousa</Authors>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Copyright>Lucas Sousa. All rights reserved.</Copyright>
+		<PackageId>PublicUtility.$(AssemblyName)</PackageId>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+
+</Project>
