@@ -108,13 +108,13 @@ namespace PublicUtility.SystemHelper {
 
     public static string GetVariableByName(string name) => Environment.GetEnvironmentVariable(name);
 
-    public static void Exit() => Environment.Exit(0);
-
     public static IList<FileInfo> GrabFilesFromFolder(string dirPath) => new DirectoryInfo(dirPath).GetFiles().OrderBy(x => x.CreationTime).ToList();
+
+    public static void Exit() => Environment.Exit(0);
 
     public static bool IsOS64Bits() => Environment.Is64BitOperatingSystem;
 
-    public static void RunCmdScript(IEnumerable<string> commands, string privatePath = @"", bool shellExecute = false) {
+    public static void RunPromptScript(IEnumerable<string> commands, string privatePath = @"", bool shellExecute = false) {
       var psi = new ProcessStartInfo();
 
       privatePath = Path.Combine(privatePath, "NewCommandsForExec.bat");
