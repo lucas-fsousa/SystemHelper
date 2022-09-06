@@ -21,6 +21,9 @@
 		<Version></Version>
 	</PropertyGroup>
 	<ItemGroup>
+	  <PackageReference Include="PublicUtility.Nms" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Update="README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>

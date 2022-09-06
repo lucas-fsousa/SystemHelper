@@ -1,18 +1,14 @@
-﻿using System.Diagnostics;
+﻿using PublicUtility.Nms.Enums;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace PublicUtility.SystemHelper {
-  [Flags]
-  public enum WidowMode {
-    Hide = 0,
-    Show = 5
-  }
-
+ 
   public static class SystemOP {
 
     #region PRIVATE METHODS
 
-    private static void BaseLocateFileOnSystem(string fileName, string rootDir, bool firstOnly, ref List<string> lstFilePath, bool exactFileName, out bool found) {
+    private static void BaseLocateFileOnSystem(string fileName, string rootDir, bool firstOnly, ref IList<string> lstFilePath, bool exactFileName, out bool found) {
       /* This method is used recursively to read all files from the root path. 
        * Folders are traversed one by one until all files with the specified name are found 
        * or the first to be found which depends on the "firstOnly" parameter.
@@ -138,7 +134,7 @@ namespace PublicUtility.SystemHelper {
     }
 
     public static IList<string> LocateFileOnSystem(string fileName, bool exactFilename, bool firstOnly = false, string rootDir = "C://") {
-      var result = new List<string>();
+      IList<string> result = new List<string>();
 
       BaseLocateFileOnSystem(fileName, rootDir, firstOnly, ref result, exactFilename, out bool found);
 
