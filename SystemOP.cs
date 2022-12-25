@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace PublicUtility.SystemHelper {
- 
+
   public static class SystemOP {
 
     #region PRIVATE METHODS
@@ -37,7 +37,7 @@ namespace PublicUtility.SystemHelper {
 
         }
 
-        IList<FileInfo> lstFiles = GrabFilesFromFolder(dir);
+        var lstFiles = GetFilesFromFolder(dir);
         foreach(var file in lstFiles) {
 
           if(exactFileName) {
@@ -55,16 +55,13 @@ namespace PublicUtility.SystemHelper {
             }
           }
 
-
         }
 
         if(firstOnly && found)
           return;
-
       }
 
     }
-
 
     #endregion
 
@@ -88,25 +85,18 @@ namespace PublicUtility.SystemHelper {
 
     public static Process GetProcessById(int id) => Process.GetProcessById(id);
 
-    public static IList<Process> GetAllProcessByName(string name, bool exactName = true) {
-      var list = new List<Process>();
-      var allProcess = Process.GetProcesses();
+    public static IEnumerable<Process> GetAllProcessByName(string name, bool exactName = true) {
+      if(exactName)
+        return Process.GetProcesses().Where(x => x.ProcessName.Contains(name));
 
-      allProcess.Where(x => x.ProcessName.Contains(name)).ToList().ForEach(x => list.Add(x));
-      if(!exactName) {
-        name = name[1..].ToLower(); // substring this name / remove first character
-        allProcess.Where(x => x.ProcessName.ToLower().Contains(name)).ToList().ForEach(x => list.Add(x));
-      }
-
-      list = list.Distinct().ToList();
-      return list;
+      return Process.GetProcesses().Where(x => x.ProcessName.ToLower().Contains(name[1..].ToLower()));
     }
 
     public static string GetVariableByName(string name) => Environment.GetEnvironmentVariable(name);
 
-    public static IList<FileInfo> GrabFilesFromFolder(string dirPath) => new DirectoryInfo(dirPath).GetFiles().OrderBy(x => x.CreationTime).ToList();
+    public static IEnumerable<FileInfo> GetFilesFromFolder(string dirPath) => new DirectoryInfo(dirPath).GetFiles().OrderBy(x => x.CreationTime);
 
-    public static void Exit() => Environment.Exit(0);
+    public static void Exit(int exitCode = 0) => Environment.Exit(exitCode);
 
     public static bool IsOS64Bits() => Environment.Is64BitOperatingSystem;
 
@@ -133,14 +123,22 @@ namespace PublicUtility.SystemHelper {
         File.Delete(privatePath);
     }
 
-    public static IList<string> LocateFileOnSystem(string fileName, bool exactFilename, bool firstOnly = false, string rootDir = "C://") {
-      IList<string> result = new List<string>();
+    public async static ValueTask<IEnumerable<string>> LocateFileOnSystemAsync(string fileName, bool exactFilename, bool firstOnly = false, string rootDir = "C://") {
+      return await Task.Run(() => {
+        IList<string> result = new List<string>();
 
-      BaseLocateFileOnSystem(fileName, rootDir, firstOnly, ref result, exactFilename, out bool found);
+        BaseLocateFileOnSystem(fileName, rootDir, firstOnly, ref result, exactFilename, out _);
 
-      return result;
-
+        return result;
+      });
     }
 
+    public static IEnumerable<string> LocateFileOnSystem(string fileName, bool exactFilename, bool firstOnly = false, string rootDir = "C://") {
+      IList<string> result = new List<string>();
+
+      BaseLocateFileOnSystem(fileName, rootDir, firstOnly, ref result, exactFilename, out _);
+
+      return result;
+    }
   }
 }

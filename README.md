@@ -22,7 +22,7 @@ var proccess = SystemOP.GetProcessById(12); // get a system process by its ident
 
 var variable = SystemOP.GetVariableByName("myPc"); // gets the value of an environment variable from the local computer.
 
-var files = SystemOP.GrabFilesFromFolder("C://"); // Gets all files from the specified directory. (does not include folders and subfolders)
+var files = SystemOP.GetFilesFromFolder("C://"); // Gets all files from the specified directory. (does not include folders and subfolders)
 
 SystemOP.HideConsole(); // hide the application console
 SystemOP.ShowConsole(); // retrieves the application console view.

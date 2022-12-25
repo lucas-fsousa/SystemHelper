@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<Title>PublicUtility.SystemHelper</Title>
@@ -12,14 +12,14 @@
 		<PackAsTool>False</PackAsTool>
 		<NeutralLanguage>en</NeutralLanguage>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageTags>DOTNET;.NET6; .NET; SYSTEM; HELPER; ASPNET; CONFIG</PackageTags>
+		<PackageTags>DOTNET;.NET7; .NET; SYSTEM; HELPER; ASPNET; CONFIG</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Lucas F Sousa</Authors>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Copyright>Lucas Sousa. All rights reserved.</Copyright>
 		<PackageId>PublicUtility.$(AssemblyName)</PackageId>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>Namespace movement. Migration of enumerators and structs to PublicUtility.Nms</PackageReleaseNotes>
+		<Version>2.0.0</Version>
+		<PackageReleaseNotes>Update to .NET 7, inclusion of the async method for locating files on the system.</PackageReleaseNotes>
 	</PropertyGroup>
 	<ItemGroup>
 	  <PackageReference Include="PublicUtility.Nms" Version="1.0.2" />
